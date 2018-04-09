@@ -4,6 +4,7 @@
 // I assume that variables a, b, and v are all integers. If they are not, I will need to use parseInt()
 
 function sumOfTwo(a,b,v) {
+  // if a + b = v, return true. if not, return false.
   if ((a + b) == v) {
   return true;
   } else {
@@ -11,6 +12,7 @@ function sumOfTwo(a,b,v) {
   }
 }
 
+sumOfTwo(2,5,7);
 
 // Question 2 -- stringReformatting(string): The string s contains dashes that split it into groups of characters. You are given an integer k that represents the number of characters in groups that your output should have. Your goal is to return a new string that breaks s into groups with a length of k by placing dashes at the correct intervals. If necessary, the first group of characters can be shorter than k. It is guaranteed that there are no consecutive dashes in s.
 // For s = "2-4a0r7-4k" and k = 4, the output should be stringReformatting(s, k) = "24a0-r74k";
@@ -38,7 +40,7 @@ function stringReformatting(s,k) {
   return(newString);
 }
 
-stringReformatting('2-4a0r7-4k', 4)
+stringReformatting('2-4a0r7-4k', 4);
 
 
 // For s = "2-4a0r7-4k" and k = 3, the output should be stringReformatting(s, k) = "24-a0r-74k".
@@ -58,7 +60,7 @@ function stringReformatting(s,k) {
     //if i is divisible by k with remainder of 0
     if (i % k === 0) {
       //add in a - at that point with index-1
-      splitString.splice(i-1, 0, '-')
+      splitString.splice(i-1, 0, '-');
     }
   }
 
@@ -67,10 +69,30 @@ function stringReformatting(s,k) {
   return(newString);
 }
 
-stringReformatting('2-4a0r7-4k', 3)
+stringReformatting('2-4a0r7-4k', 3);
 
 
 // Question 3 -- getClosingParen(sentence, openingParenIndex):
 // "Sometimes (when I nest them (my parentheticals) too much (like this (and this))) they get confusing."
 // Write a function that, given a sentence like the one above, along with the position of an opening parenthesis, finds the corresponding closing parenthesis.
 // Example: if the example string above is input with the number 10 (position of the first parenthesis), the output should be 79 (position of the last parenthesis).
+
+function getClosingParen(sentence, openingParenIndex) {
+  //split the sentence
+  let splitSentence = sentence.split('');
+  //loop through array and check openingParenIndex is same as first '('
+  for (let i = 0; i <= splitSentence.length; i++){
+    //check if the index of the first '(' is the same as the openingParenIndex)
+    if (splitSentence[i] === '(' && openingParenIndex) {
+      //if the statement is true, then loop through the string again backwards to find first ')' and return index
+      for (let i=splitSentence.length-1; i>0; i--) {
+        if (splitSentence[i] === ')') {
+          let closingParenIndex = i;
+        return closingParenIndex;
+        }
+      }
+    }
+  }
+}
+
+getClosingParen('Sometimes (when I nest them (my parentheticals) too much (like this (and this))) they get confusing', 10);
